@@ -553,29 +553,18 @@ function showActionButtons() {
 chatInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendBtn.click();
 });
+
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
-
-  if (params.get("openChatbot") === "true") {
-    chatbot.style.display = "flex";
-    loadFAQ(); // show questions neatly
-  }
-});
-
-  
-  window.addEventListener("load", () => {
-  const params = new URLSearchParams(window.location.search);
-
   const fromStyling = params.get("openChatbot") === "true";
 
-  // 1️⃣ Show chatbot if redirected from success page
+  // Show chatbot if redirected
   if (fromStyling) {
     chatbot.style.display = "flex";
-    loadFAQ(); // show chatbot questions
-  }
-
-  // 2️⃣ Show order popup ONLY if NOT redirected
-  if (!fromStyling) {
+    loadFAQ();
+  } 
+  // Show popup ONLY if NOT redirected
+  else {
     const popup = document.getElementById("order-popup");
     const closeBtn = document.getElementById("close-popup");
 
@@ -592,6 +581,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
