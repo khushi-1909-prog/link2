@@ -556,29 +556,30 @@ function showActionButtons() {
 chatInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendBtn.click();
 });
-
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
   const fromStyling = params.get("openChatbot") === "true";
-  const fromNote = params.get("fromNote") === "true";
+  const fromIntro = params.get("fromIntro") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
 
   if (fromStyling) {
-    // Show chatbot directly
-    chatbot.style.display = "flex";
+    // Case 2: Came from styling-success.html
+    chatbot.style.display = "flex"; // open chatbot
     loadFAQ();
-  } else if (fromNote) {
-    // Show popup if coming from note.html
-    popup.style.display = "flex";
+  } else if (fromintro) {
+    // Case 1: Came from intro.html
+    popup.style.display = "flex"; // show popup
+    chatbot.style.display = "none"; // keep chatbot closed
+
     closeBtn.onclick = () => {
-      popup.style.display = "none";
-      alert("Click the Description button of any product and place your order again!");
+      popup.style.display = "none"; // close popup
     };
   } else {
-    // Normal behavior for anyone visiting directly
+    // Default behavior for direct visits
     popup.style.display = "flex";
+    chatbot.style.display = "none";
     closeBtn.onclick = () => {
       popup.style.display = "none";
     };
@@ -591,6 +592,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
