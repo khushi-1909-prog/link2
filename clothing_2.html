@@ -560,6 +560,7 @@ chatInput.addEventListener("keypress", (e) => {
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
   const fromStyling = params.get("fromStyling") === "true";
+  const fromNote = params.get("fromNote") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
@@ -568,8 +569,11 @@ window.addEventListener("load", () => {
     // Coming from styling-success → open chatbot directly
     chatbot.style.display = "flex";
     loadFAQ();
+  } else if (fromNote) {
+    // Coming from note.html → show alert instead of popup
+    alert("Click the Description button and place your order again!");
   } else {
-    // Normal visit (like from note.html) → show popup
+    // Normal visit → show popup
     popup.style.display = "flex";
 
     closeBtn.onclick = () => {
@@ -580,8 +584,10 @@ window.addEventListener("load", () => {
 
 
 
+
 </script>
 </html>
+
 
 
 
