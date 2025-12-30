@@ -559,26 +559,22 @@ chatInput.addEventListener("keypress", (e) => {
 
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
-  const fromStyling = params.get("openChatbot") === "true";
+  const fromStyling = params.get("fromStyling") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
 
   if (fromStyling) {
-    // Open chatbot directly, hide popup
+    // Coming from styling-success → open chatbot directly
     chatbot.style.display = "flex";
     loadFAQ();
-    if (popup) popup.style.display = "none";
   } else {
-    // Show popup
-    if (popup) popup.style.display = "flex";
-    chatbot.style.display = "none";
+    // Normal visit (like from note.html) → show popup
+    popup.style.display = "flex";
 
-    if (closeBtn) {
-      closeBtn.onclick = () => {
-        popup.style.display = "none";
-      };
-    }
+    closeBtn.onclick = () => {
+      popup.style.display = "none";
+    };
   }
 });
 
@@ -586,6 +582,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
