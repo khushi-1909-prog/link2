@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Placed • Better Buy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #fdd9b5, #fceabb);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Outer card */
+    .success-card {
+      width: 90%;
+      max-width: 500px;
+      background: #fff;
+      border-radius: 16px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+      padding: 25px;
+      text-align: center;
+      animation: popUp 0.6s ease;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* Brand Heading */
+    .brand {
+      font-size: 28px;
+      font-weight: bold;
+      color: #333;
+      margin: 0;
+    }
+
+    h2 {
+      font-size: 22px;
+      margin: 10px 0;
+      color: #444;
+    }
+
+    p {
+      font-size: 14px;
+      color: #555;
+      margin: 8px 0;
+    }
+
+    .order-id, .delivery {
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* Promo Box */
+    .promo-box {
+      background: linear-gradient(135deg, #00c6ff, #0072ff);
+      color: #fff;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 16px;
+      animation: popUp 0.8s ease 0.2s;
+    }
+
+    .promo-box h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+
+    .promo-box p {
+      font-size: 14px;
+      margin: 0 0 15px 0;
+    }
+
+    /* Button */
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      font-size: 15px;
+      font-weight: bold;
+      text-decoration: none;
+      background: #ff4081;
+      color: #fff;
+      border-radius: 25px;
+      transition: background 0.3s ease;
+    }
+
+    .btn:hover {
+      background: #e73370;
+    }
+
+    /* Pop-up animation */
+    @keyframes popUp {
+      0% {
+        transform: scale(0.8);
+        opacity: 0;
+      }
+      100% {
+        transform: scale(1);
+        opacity: 1;
+      }
+    }
+
+    /* Confetti */
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: red;
+      top: -10px;
+      animation: fall linear forwards;
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="success-card">
+    <h1 class="brand">Better Buy</h1>
+
+    <h2>🎉 Order Placed 🎉</h2>
+    <p>Your order has been placed successfully!</p>
+
+    <p class="order-id">Order <strong>#1234</strong></p>
+    <p class="delivery">Estimated delivery by <strong>September22, 2025</strong></p>
+    <p>Thank you for shopping with us 💙</p>
+
+    <section class="promo-box">
+      <h3>🚀 Better Buy has launched new styling services</h3>
+      <p>Now you can explore styling ideas for different clothing products.</p>
+      <a href="styling.html" class="btn">Try Now</a>
+    </section>
+  </main>
+
+  <script>
+    // Confetti generator
+    function createConfetti() {
+      const confetti = document.createElement("div");
+      confetti.classList.add("confetti");
+      document.body.appendChild(confetti);
+
+      // Random colors
+      const colors = ["#ff4081", "#ff9800", "#4caf50", "#2196f3", "#9c27b0", "#ffc107"];
+      confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+
+      // Random position and size
+      confetti.style.left = Math.random() * window.innerWidth + "px";
+      confetti.style.width = confetti.style.height = Math.random() * 8 + 5 + "px";
+
+      // Random animation duration
+      confetti.style.animationDuration = Math.random() * 3 + 2 + "s";
+
+      // Remove after animation
+      setTimeout(() => {
+        confetti.remove();
+      }, 5000);
+    }
+
+    // Drop confetti every 200ms
+    setInterval(createConfetti, 200);
+  </script>
+</body>
+</html>
+
