@@ -562,18 +562,7 @@ window.addEventListener("load", () => {
   }
 });
 
-  window.onload = function () {
-    const popup = document.getElementById("order-popup");
-    const closeBtn = document.getElementById("close-popup");
-
-    // Show popup on page load
-    popup.style.display = "flex";
-
-    // Close popup
-    closeBtn.onclick = function () {
-      popup.style.display = "none";
-    };
-  };
+  
   window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
 
@@ -603,6 +592,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
