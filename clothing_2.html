@@ -375,16 +375,7 @@
  
 <footer class="footer">© 2025 Better Buy · All rights reserved</footer>
 <!-- POPUP -->
-<div id="order-popup" class="popup-overlay">
-  <div class="popup-box">
-    <h2>🛍️ How to Order</h2>
-    <p>
-      Click on the <strong>Description</strong> button of any product  
-      to view details and place your order.
-    </p>
-    <button id="close-popup">Got it</button>
-  </div>
-</div>
+
 
 </body>
     
@@ -570,28 +561,32 @@ window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
   const fromStyling = params.get("openChatbot") === "true";
 
+  const popup = document.getElementById("order-popup");
+  const closeBtn = document.getElementById("close-popup");
+
   if (fromStyling) {
-    // Show chatbot only
+    // Open chatbot directly, hide popup
     chatbot.style.display = "flex";
     loadFAQ();
+    if (popup) popup.style.display = "none";
   } else {
-    // Show popup only
-    const popup = document.getElementById("order-popup");
-    const closeBtn = document.getElementById("close-popup");
+    // Show popup
+    if (popup) popup.style.display = "flex";
+    chatbot.style.display = "none";
 
-    popup.style.display = "flex";
-
-    closeBtn.onclick = () => {
-      popup.style.display = "none";
-    };
+    if (closeBtn) {
+      closeBtn.onclick = () => {
+        popup.style.display = "none";
+      };
+    }
   }
 });
 
 
 
-
 </script>
 </html>
+
 
 
 
