@@ -357,12 +357,18 @@
     <input type="text" id="chat-input" placeholder="Type your question..." />
     <button id="send-btn">Send</button>
   </div>
-</div>
+<!-- POPUP -->
 <div id="order-popup" class="popup-overlay" style="display:none;">
   <div class="popup-box">
-    ...
+    <h2>🛍️ How to Order</h2>
+    <p>
+      Click on the <strong>Description</strong> button of any product  
+      to view details and place your order.
+    </p>
+    <button id="close-popup">Got it</button>
   </div>
 </div>
+
 
 
 </main>
@@ -564,19 +570,18 @@ window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
   const fromStyling = params.get("openChatbot") === "true";
 
-  // Show chatbot if redirected
   if (fromStyling) {
+    // Show chatbot only
     chatbot.style.display = "flex";
     loadFAQ();
-  } 
-  // Show popup ONLY if NOT redirected
-  else {
+  } else {
+    // Show popup only
     const popup = document.getElementById("order-popup");
     const closeBtn = document.getElementById("close-popup");
 
     popup.style.display = "flex";
 
-    closeBtn.onclick = function () {
+    closeBtn.onclick = () => {
       popup.style.display = "none";
     };
   }
@@ -587,6 +592,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
