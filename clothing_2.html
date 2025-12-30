@@ -556,35 +556,41 @@ function showActionButtons() {
 chatInput.addEventListener("keypress", (e) => {
   if (e.key === "Enter") sendBtn.click();
 });
+<script>
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
+
   const fromStyling = params.get("openChatbot") === "true";
-  const fromIntro = params.get("fromintro") === "true";
+  const fromIntro = params.get("fromIntro") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
 
-  if (fromStyling) {
-    // Case 2: Came from styling-success.html
-    chatbot.style.display = "flex"; // open chatbot
-    loadFAQ();
-  } else if (fromintro) {
-    // Case 1: Came from intro.html
-    popup.style.display = "flex"; // show popup
-    chatbot.style.display = "none"; // keep chatbot closed
+  // RESET everything first
+  popup.style.display = "none";
+  chatbot.style.display = "none";
 
-    closeBtn.onclick = () => {
-      popup.style.display = "none"; // close popup
-    };
-  } else {
-    // Default behavior for direct visits
-    popup.style.display = "flex";
-    chatbot.style.display = "none";
+  // ✅ CASE 1: Coming from intro.html
+  if (fromIntro) {
+    popup.style.display = "flex";   // show popup
+    chatbot.style.display = "none"; // chatbot closed
+
     closeBtn.onclick = () => {
       popup.style.display = "none";
     };
   }
+
+  // ✅ CASE 2: Coming from styling-success.html
+  else if (fromStyling) {
+    popup.style.display = "none";   // popup closed
+    chatbot.style.display = "flex"; // chatbot open
+    loadFAQ();
+  }
+
+  // ✅ CASE 3: Direct visit → both closed
 });
+</script>
+
 
 
 
@@ -592,6 +598,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
