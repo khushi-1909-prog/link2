@@ -357,7 +357,16 @@
     <input type="text" id="chat-input" placeholder="Type your question..." />
     <button id="send-btn">Send</button>
   </div>
+
+
+
+
+
+</main>
+ 
+<footer class="footer">© 2025 Better Buy · All rights reserved</footer>
 <!-- POPUP -->
+
 <div id="order-popup" class="popup-overlay" style="display:none;">
   <div class="popup-box">
     <h2>🛍️ How to Order</h2>
@@ -368,15 +377,6 @@
     <button id="close-popup">Got it</button>
   </div>
 </div>
-
-
-
-</main>
- 
-<footer class="footer">© 2025 Better Buy · All rights reserved</footer>
-<!-- POPUP -->
-
-
 </body>
     
     
@@ -570,21 +570,20 @@ window.addEventListener("load", () => {
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
 
-  // Reset
+  // Reset everything
   popup.style.display = "none";
   chatbot.style.display = "none";
 
-  // 🔹 INTRO → show popup ONLY ONCE
+  // ✅ FROM INTRO → SHOW POPUP ONLY
   if (fromIntro) {
     popup.style.display = "flex";
-    popupHandled = true;
 
     closeBtn.onclick = () => {
       popup.style.display = "none";
     };
   }
 
-  // 🔹 STYLING → open chatbot
+  // ✅ FROM STYLING → OPEN CHATBOT ONLY
   if (fromStyling) {
     chatbot.style.display = "flex";
     loadFAQ();
@@ -592,8 +591,10 @@ window.addEventListener("load", () => {
 });
 
 
+
 </script>
 </html>
+
 
 
 
