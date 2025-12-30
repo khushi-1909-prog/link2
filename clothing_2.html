@@ -382,6 +382,8 @@
     
     
   <script>
+let popupHandled = false;
+
 const chatbotBtn = document.getElementById("chatbot-btn");
 const chatbot = document.getElementById("chatbot");
 const sendBtn = document.getElementById("send-btn");
@@ -473,15 +475,17 @@ function resetInactivityTimer() {
 
 // Open / close chatbot
 chatbotBtn.addEventListener("click", () => {
+  // ❌ NEVER open popup on chatbot click
   const isOpen = chatbot.style.display === "flex";
 
   chatbot.style.display = isOpen ? "none" : "flex";
 
   if (!isOpen) {
-    loadFAQ();              // ✅ ADD THIS
-    resetInactivityTimer(); // keep your timer
+    loadFAQ();
+    resetInactivityTimer();
   }
 });
+
 
 
 // Reset timer on interactions
@@ -560,44 +564,37 @@ chatInput.addEventListener("keypress", (e) => {
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
 
-  const fromStyling = params.get("openChatbot") === "true";
   const fromIntro = params.get("fromIntro") === "true";
+  const fromStyling = params.get("openChatbot") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
 
-  // RESET everything first
+  // Reset
   popup.style.display = "none";
   chatbot.style.display = "none";
 
-  // ✅ CASE 1: Coming from intro.html
+  // 🔹 INTRO → show popup ONLY ONCE
   if (fromIntro) {
-    popup.style.display = "flex";   // show popup
-    chatbot.style.display = "none"; // chatbot closed
+    popup.style.display = "flex";
+    popupHandled = true;
 
     closeBtn.onclick = () => {
       popup.style.display = "none";
     };
   }
 
-  // ✅ CASE 2: Coming from styling-success.html
-  else if (fromStyling) {
-    popup.style.display = "none";   // popup closed
-    chatbot.style.display = "flex"; // chatbot open
+  // 🔹 STYLING → open chatbot
+  if (fromStyling) {
+    chatbot.style.display = "flex";
     loadFAQ();
   }
-
-  // ✅ CASE 3: Direct visit → both closed
 });
-
-
-
-
-
 
 
 </script>
 </html>
+
 
 
 
