@@ -574,11 +574,36 @@ window.addEventListener("load", () => {
       popup.style.display = "none";
     };
   };
+  window.addEventListener("load", () => {
+  const params = new URLSearchParams(window.location.search);
+
+  const fromStyling = params.get("openChatbot") === "true";
+
+  // 1️⃣ Show chatbot if redirected from success page
+  if (fromStyling) {
+    chatbot.style.display = "flex";
+    loadFAQ(); // show chatbot questions
+  }
+
+  // 2️⃣ Show order popup ONLY if NOT redirected
+  if (!fromStyling) {
+    const popup = document.getElementById("order-popup");
+    const closeBtn = document.getElementById("close-popup");
+
+    popup.style.display = "flex";
+
+    closeBtn.onclick = function () {
+      popup.style.display = "none";
+    };
+  }
+});
+
 
 
 
 </script>
 </html>
+
 
 
 
