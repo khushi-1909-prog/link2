@@ -559,7 +559,7 @@ chatInput.addEventListener("keypress", (e) => {
 window.addEventListener("load", () => {
   const params = new URLSearchParams(window.location.search);
   const fromStyling = params.get("openChatbot") === "true";
-  const fromIntro = params.get("fromIntro") === "true";
+  const fromIntro = params.get("fromintro") === "true";
 
   const popup = document.getElementById("order-popup");
   const closeBtn = document.getElementById("close-popup");
@@ -568,7 +568,7 @@ window.addEventListener("load", () => {
     // Case 2: Came from styling-success.html
     chatbot.style.display = "flex"; // open chatbot
     loadFAQ();
-  } else if (fromIntro) {
+  } else if (fromintro) {
     // Case 1: Came from intro.html
     popup.style.display = "flex"; // show popup
     chatbot.style.display = "none"; // keep chatbot closed
@@ -592,6 +592,7 @@ window.addEventListener("load", () => {
 
 </script>
 </html>
+
 
 
 
